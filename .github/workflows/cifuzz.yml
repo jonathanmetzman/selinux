@@ -6,7 +6,7 @@ jobs:
    strategy:
      fail-fast: false
      matrix:
-       sanitizer: [address, undefined, memory]
+       sanitizer: [address]
    steps:
    - name: Build Fuzzers (${{ matrix.sanitizer }})
      id: build
@@ -22,9 +22,11 @@ jobs:
        language: c++
        fuzz-seconds: 600
        sanitizer: ${{ matrix.sanitizer }}
+       report-unreproducible-crashes: true
    - name: Upload Crash
      uses: actions/upload-artifact@v1
      if: failure() && steps.build.outcome == 'success'
      with:
        name: ${{ matrix.sanitizer }}-artifacts
        path: ./out/artifacts
+
