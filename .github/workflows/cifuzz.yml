@@ -12,13 +12,13 @@ jobs:
      id: build
      uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@master
      with:
-       oss-fuzz-project-name: 'example'
+       oss-fuzz-project-name: 'selinux'
        language: c++
        sanitizer: ${{ matrix.sanitizer }}
    - name: Run Fuzzers (${{ matrix.sanitizer }})
      uses: google/oss-fuzz/infra/cifuzz/actions/run_fuzzers@master
      with:
-       oss-fuzz-project-name: 'example'
+       oss-fuzz-project-name: 'selinux'
        language: c++
        fuzz-seconds: 600
        sanitizer: ${{ matrix.sanitizer }}
