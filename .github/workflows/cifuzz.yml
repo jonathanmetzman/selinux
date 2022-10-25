@@ -17,14 +17,14 @@ jobs:
     steps:
       - name: Build Fuzzers (${{ matrix.sanitizer }})
         id: build
-        uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@permissions
+        uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@permissions-debug
         with:
           oss-fuzz-project-name: 'selinux'
           dry-run: false
           allowed-broken-targets-percentage: 0
           sanitizer: ${{ matrix.sanitizer }}
       - name: Run Fuzzers (${{ matrix.sanitizer }})
-        uses: google/oss-fuzz/infra/cifuzz/actions/run_fuzzers@permissions
+        uses: google/oss-fuzz/infra/cifuzz/actions/run_fuzzers@permissions-debug
         with:
           oss-fuzz-project-name: 'selinux'
           fuzz-seconds: 600
